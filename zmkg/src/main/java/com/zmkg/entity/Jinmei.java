@@ -108,6 +108,13 @@ public class Jinmei  implements java.io.Serializable {
     public void setZhishu(Double zhishu) {
         this.zhishu = zhishu;
     }
+
+
+	@Override
+	public String toString() {
+		return "Jinmei [id=" + id + ", name=" + name + ", hui=" + hui + ", liu=" + liu + ", huifa=" + huifa
+				+ ", zhishu=" + zhishu + "]";
+	}
    
 
 

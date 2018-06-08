@@ -10,6 +10,7 @@ import com.zmkg.dao.JinmeiDAO;
 import com.zmkg.entity.Jinmei;
 
 @Service
+@Transactional
 public class JinmeiService {
 	@Autowired
 	private JinmeiDAO jinmeiDAO;

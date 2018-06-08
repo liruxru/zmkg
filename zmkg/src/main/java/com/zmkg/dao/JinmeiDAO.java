@@ -24,7 +24,7 @@ import com.zmkg.entity.Jinmei;
  			* Transaction control of the save(), update() and delete() operations 
 		can directly support Spring container-managed transactions or they can be augmented	to handle user-managed Spring transactions. 
 		Each of these methods provides additional information for how to configure it for the desired type of transaction control. 	
-	 * @see com.oracle.entity.Jinmei
+	 * @see com.zmkg.entity.Jinmei
   * @author MyEclipse Persistence Tools 
  */
 @Transactional
@@ -79,7 +79,7 @@ public class JinmeiDAO  {
         log.debug("getting Jinmei instance with id: " + id);
         try {
             Jinmei instance = (Jinmei) getCurrentSession()
-                    .get("com.oracle.entity.Jinmei", id);
+                    .get("com.zmkg.entity.Jinmei", id);
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -91,7 +91,7 @@ public class JinmeiDAO  {
     public List<Jinmei> findByExample(Jinmei instance) {
         log.debug("finding Jinmei instance by example");
         try {
-            List<Jinmei> results = (List<Jinmei>) getCurrentSession() .createCriteria("com.oracle.entity.Jinmei").add( create(instance) ).list();
+            List<Jinmei> results = (List<Jinmei>) getCurrentSession() .createCriteria("com.zmkg.entity.Jinmei").add( create(instance) ).list();
             log.debug("find by example successful, result size: " + results.size());
             return results;
         } catch (RuntimeException re) {

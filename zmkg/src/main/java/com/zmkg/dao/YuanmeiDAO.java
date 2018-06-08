@@ -26,7 +26,7 @@ import com.zmkg.entity.Yuanmei;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.oracle.entity.Yuanmei
+ * @see com.zmkg.entity.Yuanmei
  * @author MyEclipse Persistence Tools
  */
 @Transactional
@@ -82,7 +82,7 @@ public class YuanmeiDAO {
 		log.debug("getting Yuanmei instance with id: " + id);
 		try {
 			Yuanmei instance = (Yuanmei) getCurrentSession().get(
-					"com.oracle.entity.Yuanmei", id);
+					"com.zmkg.entity.Yuanmei", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -94,7 +94,7 @@ public class YuanmeiDAO {
 		log.debug("finding Yuanmei instance by example");
 		try {
 			List<Yuanmei> results = (List<Yuanmei>) getCurrentSession()
-					.createCriteria("com.oracle.entity.Yuanmei")
+					.createCriteria("com.zmkg.entity.Yuanmei")
 					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
