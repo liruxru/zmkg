@@ -33,25 +33,25 @@
   </thead>
   <tbody>
    	<c:forEach items="${jinmeiList }" var="jinmei"  begin="0" end="0">
-	  		<input  type="hidden"  value="${jinmei.id }"  name="jinmei1.id" />
+	  		<input  type="hidden"  value="${jinmei.id }"  name="highId" />
 	  		<tr>
-  				<td width="150px;">${jinmei.name }<input  type="hidden" value="${jinmei.name }"  name="jinmei1.name" /></td>
-	  			<td><input   value="${jinmei.hui }"  name="jinmei1.hui" /></td>
-	  			<td><input   value="${jinmei.liu }"  name="jinmei1.liu" /></td>
-	  			<td><input   value="${jinmei.huifa}"  name="jinmei1.huifa" /></td>
-	  			<td><input   value="${jinmei.zhishu }"  name="jinmei1.zhishu" /></td>
+  				<td width="150px;">${jinmei.name }<input  type="hidden" value="${jinmei.name }"  name="highName" /></td>
+	  			<td><input   value="${jinmei.hui }"  name="highHui" /></td>
+	  			<td><input   value="${jinmei.liu }"  name="highLiu" /></td>
+	  			<td><input   value="${jinmei.huifa}"  name="highHuifa" /></td>
+	  			<td><input   value="${jinmei.zhishu }"  name="highZhishu" /></td>
   			</tr>
 	  	</c:forEach>
    		<c:forEach items="${jinmeiList }" var="jinmei"  begin="1" end="1">
-	  		<input  type="hidden"  value="${jinmei.id }"  name="jinmei2.id" />
+	  		<input  type="hidden"  value="${jinmei.id }"  name="lowId" />
 	  		<tr>
-  				<td>${jinmei.name }<input  type="hidden" value="${jinmei.name }"  name="jinmei2.name" /></td>
-	  			<td><input   value="${jinmei.hui }"  name="jinmei2.hui" /></td>
-	  			<td><input   value="${jinmei.liu }"  name="jinmei2.liu" /></td>
-	  			<td><input   value="${jinmei.huifa}"  name="jinmei2.huifa" /></td>
-	  			<td><input   value="${jinmei.zhishu }"  name="jinmei2.zhishu" /></td>
+  				<td>${jinmei.name }<input  type="hidden" value="${jinmei.name }"  name="lowName" /></td>
+	  			<td><input   value="${jinmei.hui }"  name="lowHui" /></td>
+	  			<td><input   value="${jinmei.liu }"  name="lowLiu" /></td>
+	  			<td><input   value="${jinmei.huifa}"  name="lowHuifa" /></td>
+	  			<td><input   value="${jinmei.zhishu }"  name="lowZhishu" /></td>
   			</tr>	
-	  	</c:forEach>
+	  	</c:forEach>   
     <tr>
       <td>最大铲数：</td>
       <td><input name="zuiDaChanShu"  value="5"/></td>

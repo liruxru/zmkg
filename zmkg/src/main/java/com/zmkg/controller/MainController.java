@@ -2,16 +2,18 @@ package com.zmkg.controller;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.zmkg.bean.HighJinmei;
 import com.zmkg.bean.JinMei;
+import com.zmkg.bean.LowJinmei;
 import com.zmkg.entity.Jinmei;
 import com.zmkg.entity.Yuanmei;
 import com.zmkg.service.JinmeiService;
@@ -59,11 +61,12 @@ public class MainController {
 	}
 
 	@RequestMapping("jisuan")
-	public String jisuan(HttpServletRequest req, Integer zuiDaChanShu, Jinmei jinmei1, Jinmei jinmei2,Integer[] ids) {
-		System.out.println(zuiDaChanShu);
-		System.out.println(jinmei1);
-		System.out.println(jinmei2);
-		System.out.println(Arrays.toString(ids));
+	public String jisuan(HttpServletRequest req, Integer zuiDaChanShu, HighJinmei highJinmei, LowJinmei lowJinmei,Integer[] ids) {
+		Jinmei jinmei1 = new Jinmei(highJinmei.getHighName()
+				,highJinmei.getHighHui(),highJinmei.getHighLiu(),highJinmei.getHighHuifa()
+				,highJinmei.getHighZhishu()) ;
+		Jinmei jinmei2 = new Jinmei(lowJinmei.getLowName(),lowJinmei.getLowHui()
+				,lowJinmei.getLowLiu(),lowJinmei.getLowHuifa(),lowJinmei.getLowZhishu()) ;
 		if (ids == null || jinmei1 == null || jinmei2 == null || zuiDaChanShu == null) {
 			req.setAttribute("errorMsg", "请填写全部参数");
 			List<Yuanmei> yuanmeiList = yuanmeiService.listAll();
@@ -75,30 +78,31 @@ public class MainController {
 		String[] filedNames = getFiledName(jinmei1);
 		for (String filedName : filedNames) {
 			Object value = getFieldValueByName(filedName, jinmei1);
-			if (value == null) {
+			if (value == null&& !filedName.equals("id")) {
 				req.setAttribute("errorMsg", "请填写最大值全部参数");
 				List<Yuanmei> yuanmeiList = yuanmeiService.listAll();
 				List<Jinmei> jinmeiList = jinmeiService.listAll();
 				req.setAttribute("yuanmeiList", yuanmeiList);
 				req.setAttribute("jinmeiList", jinmeiList);
-				return "admin/test";
+				return "pm/index";
 			}
 		}
 		filedNames = getFiledName(jinmei2);
 		for (String filedName : filedNames) {
 			Object value = getFieldValueByName(filedName, jinmei2);
-			if (value == null) {
+			if (value == null&&!filedName.equals("id")) {
 				req.setAttribute("errorMsg", "请填写最小值全部参数");
 				List<Yuanmei> yuanmeiList = yuanmeiService.listAll();
 				List<Jinmei> jinmeiList = jinmeiService.listAll();
 				req.setAttribute("yuanmeiList", yuanmeiList);
 				req.setAttribute("jinmeiList", jinmeiList);
-				return "admin/test";
+				return "pm/index";
 			}
 		}
+		
 		List<JinMei> jinMeiList = yuanmeiService.jisuan(ids, jinmei1, jinmei2, zuiDaChanShu);
 		req.setAttribute("jinMeiList", jinMeiList);
-		return "success";
+		return "admin/test";
 	}
 
 	private static String[] getFiledName(Object o) {
